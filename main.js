@@ -1,36 +1,40 @@
-let usuario = "Lucas";
-let contrasenia = "1";
+let usuario = "lucas";
+let contrasenia = 1;
+let efectivos = [];//array de gerarquias vacio 
+let personas = [];//array de personas vacio 
+
+
 
 function ingreso () {
 
          let usuario = prompt("ingresa tu usuario");
          let contrasenia = Number(prompt("ingresa tu clave"));
-         let intentos = 0;
+         let intentos = 3;
 
-         do {
-            if (usuario == `Lucas` & contrasenia === 1) {
+         while (intentos > 1) {
+            
+            if (usuario == `lucas` & contrasenia === 1) {
                alert("Usuario valido, Bienvenido "  +  usuario);
+               break
 
-         } else {
-            alert("Los datos ingresados no son validos, adios");
-            
-            
-         }
-         intentos += 1;   
-          usuario = prompt("ingresa tu usuario");
-          contrasenia = Number(prompt("ingresa tu clave"));
-            
-         } while (intentos < 3);
-         alert("superaste la cantidad de intentos, adios");
-
-         }
-
+            } else { 
+            intentos -= 1; 
+            alert(`Los datos ingresados no son validos, intenta nuevamente, tenes ${intentos} intentos` );
+          
+            usuario = prompt("ingresa tu usuario");
+            contrasenia = Number(prompt("ingresa tu clave"));      
+            }
+           
+         }         
+            while (intentos > 1) {
+               alert("Superaste la cantidad de intentos")
+               break
+            }
          
+}
+//ingreso();
 
-ingreso();
-
- 
-/*function calculador () {
+function calculador () {
 
 
    let jerarquia = prompt(`ingrese la jerarquia de la siguiente manera: 
@@ -85,71 +89,174 @@ ingreso();
           }
           
 }
-calculador();
+//calculador();
 
 
 
-//CONSTRUCTOR
-/*
-function Jerarquia (nombre, dias, servicio){
-   this.nombre = nombre.toUpperCase();
+//CONSTRUCTOR DE OBJETOS JERARQUIA
+
+function Jerarquia (nombre, dias, tipo){
+   this.nombre = nombre.toUpperCase();// todos los nombres quedan en mayuscula
    this.dias = dias;
-   this.informar = function () {
-      console.log()//tengo que ver que pongo como metodo aca ESTO TODAVIA LO TENES QUE HACER 
+   this.tipo = tipo;
+   this.informeJerarquia = function() {
+      console.log("vas a operar en el perfil de un " + this.nombre);
    }
+   this.informeTipo = function(){
+      console.log("tene en cuenta que se trata de un Oficial " + this.tipo);
+   }
+
+
+   
 }
 
-//OBJETOS
+//***********OBJETOS JERARQUIAS*************
 
-const oficial  = new Jerarquia ("Oficial", 15);
+const oficial  = new Jerarquia ("Oficial", 15, "operativo");
 
-const oficialPrimero = new Jerarquia ("Oficial Primero", 21);
+const oficialPrimero = new Jerarquia ("Oficial Primero", 21, "operativo");
 
-const oficialMayor = new Jerarquia ("Oficial Mayor", 30);
+const oficialMayor = new Jerarquia ("Oficial Mayor", 30, "operativo");
 
-const inspector = new Jerarquia ("Inspector", 30);
+const inspector = new Jerarquia ("Inspector", 30, "supervision");
 
-const principal = new Jerarquia ("Principal", 30);
-
-console.log(inspector);
+const principal = new Jerarquia ("Principal", 30, "supervision");
 
 
+// PUSH DE OBJETOS
+efectivos.push(oficial, oficialPrimero, oficialMayor, inspector, principal);
 
-let efectivos = [];//array vacio
-
-efectivos.push(oficial, oficialPrimero, oficialMayor, inspector, principal);// pusheo de objetos 
-
-
-// por lo que vi en la clase se puede usar el metodo shift para eliminar objetos del array. Entonces si ahi agrego a un efectivo y despues lo quiero borrar antes de consultar los datos, podria agregar un boton usando este metodo, nose como todavia. 
-
-
-/*console.log(efectivos);
-
-console.log(efectivos.indexOf(inspector));// indexof para buscar dentro del array la ubicacion de la jerarquia inspector
+//PRUEBA DE METODOS DEL CONSTRUCTOR
+oficialPrimero.informeJerarquia();
+oficialPrimero.informeTipo()
 
 
-console.log(efectivos.includes(oficial));// includes para que mediga si esta la jerarquia oficial, devuelve true o false, asi que podria usarla mas adelante para alguna funcion 
+//MOSTRAR TODAS LOS OBJETOS DE LA LISTA CON LOS QUE SE OPERA (LENGHT)
+for (let i = 0; i <efectivos.length ; i++) {
+   console.log(efectivos[i]);   
+}
 
-efectivos.reverse();// reverse para 
-console.log(efectivos);*/
+//SEPARADOR DE OBJETOS
+console.log(efectivos.join("-///-"));
 
+//COPIAS DE LISTA DIVIDIDAS EN:
 
-//NOTA cuando se trata de arrays como es una lista, no contas en cantidad, sino el longitud osea que si una lista tiene como tope 5 por ejemplo, no vas a contar cinco elementos, sino una longitud de 5. por que en el ejemplo del profesor pensaste que era en cantidad y usando length es en longitud
+//OFICIALES OPERATIVOS 
 
+const oficialOperativos = efectivos.slice(0,3);
+console.log(oficialOperativos);
 
-//foreach mostrando indice de objetos en array
-/*
-efectivos.forEach((e, indice) => {
-   console.log(`${indice} : ${e}`);
-});
-
-
-//map
-efectivos.map((e,i)=>{
-   console.log(`${i} : ${e}`);
-});
-console.log(efectivos);
+//OFICIALES DE SUPERVISION
+const oficialSupervision = efectivos.slice(3,5);
+console.log(oficialSupervision);
 
 
+//*****METODO DE BUSQUEDA (FOREACH)
 
-*/
+efectivos.forEach((jerarquia) => {
+   
+console.log(jerarquia.nombre);
+console.log(jerarquia.dias);
+console.log(jerarquia.tipo);
+})
+
+
+
+//CONSTRUCTOR DE OBJETOS PERSONAS
+
+function Persona (nombre, apellido, edad, funcion, jerarquia, servActivo, condAscenso, domicilio){
+   this.nombre = nombre;
+   this.apellido = apellido.toUpperCase();
+   this.edad = edad;
+   this.funcion = funcion.toUpperCase();
+   this.jerarquia = jerarquia.toUpperCase();
+   this.servActivo = servActivo;
+   this.condAscenso = condAscenso;
+   this.domicilio = domicilio.toUpperCase();
+}
+
+
+//OBJETOS PERSONAS
+
+const perez = new Persona ("Juan", "Perez", 30, "oficial de guardia", "oficial", "si", "si", "pba");
+const gomez = new Persona ("Lucas", "Gomez", 25, "oficial de guardia", "oficial", "si","no", "caba");
+const torre = new Persona ("Sebastian", "Torre", 32, "chofer", "oficial", "si", "si", "pba");
+const monte = new Persona ("Alejandro", "Monte", 35, "encargado de movil", "oficial", "si", "si", "pba");
+const rojo = new Persona ("Leonel", "Rojo", 27, "chofer", "oficial", "si", "si", "caba");
+const toro = new Persona ("Alan", "Toro", 34, "encargado de movil", "oficial primero", "si", "no", "caba");
+const hernandez = new Persona ("Lionel", "Hernandez", 33, "faccion", "oficial primero", "si", "si", "caba");
+const gonzalez = new Persona ("Tomas", "Gonzalez", 34, "faccion", "oficial primero", "si", "si", "pba");
+const ale = new Persona ("Maria", "Ale", 30, "encargada de movil", "oficial primero", "si", "no", "caba");
+const marco = new Persona ("Paula", "Marco", 34, "faccion", "oficial primero", "si", "si", "pba");
+const brizuela = new Persona ("Marcos", "Brizuela", 35, "faccion", "oficial primero", "si", "no", "caba");
+const carola = new Persona ("Alan", "Carola", 33, "faccion", "oficial primero", "si", "no", "caba");
+const alba = new Persona ("Roberto", "Alba", 34, "encargado de movil", "oficial Mayor", "si", "si", "caba");
+const jordi = new Persona ("Mariano", "Jordi", 35, "encargado de movil", "oficial Mayor", "si", "si", "caba");
+const karin = new Persona ("Carlos", "Karin", 36, "encargado de movil", "inspector", "si", "si", "caba");
+const gucci = new Persona ("Ramiro", "Gucci", 36, "jefe de servicio externo", "inspector", "si", "si", "pba");
+const caro = new Persona ("Rafael", "Caro", 37, "jefe de servicio", "principal", "si", "si", "pba");
+
+// PUSH A LISTA PERSONAS
+
+personas.push(perez,gomez, torre, monte, rojo, toro, hernandez, gonzalez, ale, marco, brizuela, carola, alba, jordi, karin, gucci, caro);
+
+
+// BUSQUEDA DE JERARQUIA, CON SOME PARA QUE ME DIGA SI EXISTE Y POR METODO FILTER PARA QUE ME DEVUELVA LA CANTIDAD
+
+function buscadorJerarquia (){
+         let buscadorJerarquia = prompt("ingresa la jerarquia");
+
+         const resultado4 = personas.some((persona) => persona.jerarquia === buscadorJerarquia.toUpperCase());
+         console.log(resultado4);
+
+         if (resultado4 != true) {
+            alert("no ingresaste una jerarquia valida");
+            
+         } else {
+            const resultado = personas.filter((persona) => persona.jerarquia === buscadorJerarquia.toUpperCase());
+            console.log(resultado);         
+         }
+}
+buscadorJerarquia();
+
+//BUSQUEDA DE DOMICILIO POR LOCALIDAD ASIGNADA EN OBJETO
+
+function buscadorDomicilio(){
+         let buscadorDomicilio = prompt("ingresa el parametro de busqueda: pba o caba");
+
+         const resultado5 = personas.some((persona) => persona.domicilio === buscadorDomicilio.toUpperCase())
+
+         if (resultado5 != true) {
+            alert("no ingresaste un parametro valido");
+         } else {
+            const resultado1 = personas.filter((persona) => persona.domicilio === buscadorDomicilio.toUpperCase());
+            console.log(resultado1);            
+         }
+
+}
+
+buscadorDomicilio();
+
+//BUSQUEDA Y FILTRADO CON SOME Y FILTER (BUSCA POR FUNCION ASIGNADA EN EL OBJETO)
+
+function buscadorFuncion () {
+let preguntaFuncion = prompt("que funcion buscas");
+
+const resultado2 = personas.some((persona) => persona.funcion === preguntaFuncion.toUpperCase());
+
+console.log(resultado2);
+
+if (resultado2 != true) {
+   console.log("no se encontraron coinsidencias");
+   
+} else {
+   const resultado3 = personas.filter((persona) => persona.funcion === preguntaFuncion.toUpperCase());
+   console.log(resultado3);
+   
+}
+
+}
+ buscadorFuncion();
+
+
+
