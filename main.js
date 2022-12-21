@@ -202,7 +202,7 @@ personas.push(perez,gomez, torre, monte, rojo, toro, hernandez, gonzalez, ale, m
 
 
 // BUSQUEDA DE JERARQUIA, CON SOME PARA QUE ME DIGA SI EXISTE Y POR METODO FILTER PARA QUE ME DEVUELVA LA CANTIDAD
-
+/*
 function buscadorJerarquia (){
          let buscadorJerarquia = prompt("ingresa la jerarquia");
 
@@ -217,7 +217,7 @@ function buscadorJerarquia (){
             console.log(resultado);         
          }
 }
-buscadorJerarquia();
+//buscadorJerarquia();
 
 //BUSQUEDA DE DOMICILIO POR LOCALIDAD ASIGNADA EN OBJETO
 
@@ -235,7 +235,7 @@ function buscadorDomicilio(){
 
 }
 
-buscadorDomicilio();
+//buscadorDomicilio();
 
 //BUSQUEDA Y FILTRADO CON SOME Y FILTER (BUSCA POR FUNCION ASIGNADA EN EL OBJETO)
 
@@ -255,8 +255,102 @@ if (resultado2 != true) {
    
 }
 
+}*/
+//buscadorFuncion();
+
+
+///////////////////////////    DOM    ////////////////////////////
+
+ 
+
+
+//MODIFIQUE EL TITULO ORIGINAL
+let tituloNuevo = document.querySelector(".headerIndex").textContent = "INGRESASTE AL CALCULADOR DE LICENCIAS Y CONCEPTOS"
+console.log(tituloNuevo);
+
+
+///////////////////////////////////////////////////
+
+/*let listaImpresa = document.querySelector(".listaIndex");
+
+for (let p of personas){
+   let listado = document.createElement("li");
+   listado.innerHTML=`${p.funcion}`;
+   listaImpresa.appendChild(listado);
 }
- buscadorFuncion();
+
+
+console.log(listaImpresa);*/
 
 
 
+const inputSearch = document.querySelector("#inputSearch")
+const tbody = document.querySelector("tbody")
+
+
+const listadoBusqueda = (p)=>{
+   return`<tr>
+            <td>${p.jerarquia}</td>
+            <td>${p.nombre}</td>
+            <td>${p.apellido}</td>
+            <td>${p.funcion}</td>
+         </tr>`
+}
+
+const filtradoJerarquia = ()=>{
+   let parametro1 = inputSearch.value
+   let resultado6 = personas.filter(p=> p.jerarquia.includes(parametro1))
+   if (resultado6.length > 0) {
+ cargarBusqueda(resultado6)
+ }
+}
+
+const cargarBusqueda = (array)=>{
+   let listado = ""
+   if (array.length > 0) {
+      array.forEach(p=>{
+         listado += listadoBusqueda(p)
+      })
+      tbody.innerHTML = listado;
+   }
+}
+cargarBusqueda(personas)
+
+
+     
+
+
+/**********************BOTONES***********************/
+
+//BOTON LICENCIAS
+
+let botonLicencia = document.createElement("button");
+botonLicencia.textContent= "LICENCIAS";
+botonLicencia.setAttribute("class", "botonLicencia");
+document.querySelector(".listaIndex").appendChild(botonLicencia);
+
+//onclick
+botonLicencia.onclick = function(){
+   //console.log("hiciste click en el boton de licencias");
+   location.href = `pages/licencias.html`
+}
+//mousemove con msj para el boton
+botonLicencia.addEventListener("mousemove", ()=>{
+   botonLicencia.title = "presiona para ingresar a Licencias"
+} )
+
+//BOTON CONCEPTOS
+
+let botonConcepto = document.createElement("button");
+botonConcepto.textContent= "CONCEPTO";
+botonConcepto.setAttribute("class", "botonConcepto");
+document.querySelector(".listaIndex").appendChild(botonConcepto);
+
+botonConcepto.addEventListener("click", ()=>{
+   //console.log("Hiciste click en boton de conceptos");
+   location.href = `pages/conceptos.html`
+})
+
+botonConcepto.addEventListener("mousemove", ()=>{
+   botonConcepto.title = "presiona para ingresar a Concepto"
+} )
