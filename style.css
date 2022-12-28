@@ -54,3 +54,7 @@
 .table{
           background-color: rgb(53, 89, 89);
 }
+.botonSeleccionar{
+          background-color: rgb(51, 51, 229);
+          color: beige;
+}

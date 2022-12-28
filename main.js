@@ -34,62 +34,6 @@ function ingreso () {
 }
 //ingreso();
 
-function calculador () {
-
-
-   let jerarquia = prompt(`ingrese la jerarquia de la siguiente manera: 
-                  1) oficial 
-                  2) oficialPrimero 
-                  3) oficialMayor 
-                  4) inspector 
-                  5) principal`);    
-
-
-         switch (jerarquia) {
-            case `oficial`:
-               alert("tiene 15 dias anuales de licencia");
-               break;
-
-            case `oficialPrimero`:
-               alert("tiene 21 dias anuales de licencia");   
-               break;
-
-            case `oficialMayor`: 
-               alert("tenes 30 dias anuales de licencia");
-               break; 
-            
-            case `inspector`: 
-               alert("tenes 30 dias anuales de licencia");
-               break; 
-
-            case `principal`: 
-               alert("tenes 30 dias anuales de licencia");
-               break; 
-         
-            default:
-               alert(`no ingresaste ninguna jerarquia, adios`);
-               break;
-         }  
-                 
-            let totalDias = Number(prompt("ingresa cuantos dias le quedan"));
-            let cantidadSolicitada = Number(prompt("ingrese la cantidad de dias que pide"));  
-            
-
-         if ( cantidadSolicitada <= 30 ) {
-
-               function resta (){                    
-                    diasRestantes =  totalDias - cantidadSolicitada;
-                    return mensaje = `si confirma le van a quedar ${diasRestantes} dias`;
-                    }
-                    alert(resta());
-                    
-                    
-          } else {alert("ingresaste una cantidad que no es valida, adios");
-                    
-          }
-          
-}
-//calculador();
 
 
 
@@ -164,7 +108,7 @@ console.log(jerarquia.tipo);
 
 //CONSTRUCTOR DE OBJETOS PERSONAS
 
-function Persona (nombre, apellido, edad, funcion, jerarquia, servActivo, condAscenso, domicilio){
+function Persona (nombre, apellido, edad, funcion, jerarquia, servActivo, condAscenso, domicilio, dias){
    this.nombre = nombre;
    this.apellido = apellido.toUpperCase();
    this.edad = edad;
@@ -173,33 +117,92 @@ function Persona (nombre, apellido, edad, funcion, jerarquia, servActivo, condAs
    this.servActivo = servActivo;
    this.condAscenso = condAscenso;
    this.domicilio = domicilio.toUpperCase();
+   this.dias = dias;
 }
 
+//OBJETOS PERSONAS (PONELE LA CANTIDAD DE DIAS A TODOS)
 
-//OBJETOS PERSONAS
-
-const perez = new Persona ("Juan", "Perez", 30, "oficial de guardia", "oficial", "si", "si", "pba");
-const gomez = new Persona ("Lucas", "Gomez", 25, "oficial de guardia", "oficial", "si","no", "caba");
-const torre = new Persona ("Sebastian", "Torre", 32, "chofer", "oficial", "si", "si", "pba");
-const monte = new Persona ("Alejandro", "Monte", 35, "encargado de movil", "oficial", "si", "si", "pba");
-const rojo = new Persona ("Leonel", "Rojo", 27, "chofer", "oficial", "si", "si", "caba");
-const toro = new Persona ("Alan", "Toro", 34, "encargado de movil", "oficial primero", "si", "no", "caba");
-const hernandez = new Persona ("Lionel", "Hernandez", 33, "faccion", "oficial primero", "si", "si", "caba");
-const gonzalez = new Persona ("Tomas", "Gonzalez", 34, "faccion", "oficial primero", "si", "si", "pba");
-const ale = new Persona ("Maria", "Ale", 30, "encargada de movil", "oficial primero", "si", "no", "caba");
-const marco = new Persona ("Paula", "Marco", 34, "faccion", "oficial primero", "si", "si", "pba");
-const brizuela = new Persona ("Marcos", "Brizuela", 35, "faccion", "oficial primero", "si", "no", "caba");
-const carola = new Persona ("Alan", "Carola", 33, "faccion", "oficial primero", "si", "no", "caba");
-const alba = new Persona ("Roberto", "Alba", 34, "encargado de movil", "oficial Mayor", "si", "si", "caba");
-const jordi = new Persona ("Mariano", "Jordi", 35, "encargado de movil", "oficial Mayor", "si", "si", "caba");
-const karin = new Persona ("Carlos", "Karin", 36, "encargado de movil", "inspector", "si", "si", "caba");
-const gucci = new Persona ("Ramiro", "Gucci", 36, "jefe de servicio externo", "inspector", "si", "si", "pba");
-const caro = new Persona ("Rafael", "Caro", 37, "jefe de servicio", "principal", "si", "si", "pba");
+const perez = new Persona ("Juan", "Perez", 30, "oficial de guardia", "oficial", "si", "si", "pba", 15);
+const gomez = new Persona ("Lucas", "Gomez", 25, "oficial de guardia", "oficial", "si","no", "caba", 15);
+const torre = new Persona ("Sebastian", "Torre", 32, "chofer", "oficial", "si", "si", "pba", 15);
+const monte = new Persona ("Alejandro", "Monte", 35, "encargado de movil", "oficial", "si", "si", "pba", 15);
+const rojo = new Persona ("Leonel", "Rojo", 27, "chofer", "oficial", "si", "si", "caba", 15);
+const toro = new Persona ("Alan", "Toro", 34, "encargado de movil", "oficial primero", "si", "no", "caba", 21);
+const hernandez = new Persona ("Lionel", "Hernandez", 33, "faccion", "oficial primero", "si", "si", "caba", 21);
+const gonzalez = new Persona ("Tomas", "Gonzalez", 34, "faccion", "oficial primero", "si", "si", "pba", 21);
+const ale = new Persona ("Maria", "Ale", 30, "encargada de movil", "oficial primero", "si", "no", "caba", 21);
+const marco = new Persona ("Paula", "Marco", 34, "faccion", "oficial primero", "si", "si", "pba", 21);
+const brizuela = new Persona ("Marcos", "Brizuela", 35, "faccion", "oficial primero", "si", "no", "caba", 21);
+const carola = new Persona ("Alan", "Carola", 33, "faccion", "oficial primero", "si", "no", "caba", 21);
+const alba = new Persona ("Roberto", "Alba", 34, "encargado de movil", "oficial Mayor", "si", "si", "caba", 30);
+const jordi = new Persona ("Mariano", "Jordi", 35, "encargado de movil", "oficial Mayor", "si", "si", "caba", 30);
+const karin = new Persona ("Carlos", "Karin", 36, "encargado de movil", "inspector", "si", "si", "caba", 30);
+const gucci = new Persona ("Ramiro", "Gucci", 36, "jefe de servicio externo", "inspector", "si", "si", "pba", 30);
+const caro = new Persona ("Rafael", "Caro", 37, "jefe de servicio", "principal", "si", "si", "pba", 30);
 
 // PUSH A LISTA PERSONAS
 
 personas.push(perez,gomez, torre, monte, rojo, toro, hernandez, gonzalez, ale, marco, brizuela, carola, alba, jordi, karin, gucci, caro);
 
+
+
+
+function calculador () {
+
+
+   let jerarquia = prompt(`ingrese la jerarquia de la siguiente manera: 
+                  1) oficial 
+                  2) oficialPrimero 
+                  3) oficialMayor 
+                  4) inspector 
+                  5) principal`);    
+
+
+         switch (jerarquia) {
+            case `oficial`:
+               alert("tiene 15 dias anuales de licencia");
+               break;
+
+            case `oficialPrimero`:
+               alert("tiene 21 dias anuales de licencia");   
+               break;
+
+            case `oficialMayor`: 
+               alert("tenes 30 dias anuales de licencia");
+               break; 
+            
+            case `inspector`: 
+               alert("tenes 30 dias anuales de licencia");
+               break; 
+
+            case `principal`: 
+               alert("tenes 30 dias anuales de licencia");
+               break; 
+         
+            default:
+               alert(`no ingresaste ninguna jerarquia, adios`);
+               break;
+         }  
+                 
+            let totalDias = Number(prompt("ingresa cuantos dias le quedan"));
+            let cantidadSolicitada = Number(prompt("ingrese la cantidad de dias que pide"));  
+            
+
+         if ( cantidadSolicitada <= 30 ) {
+
+               function resta (){                    
+                    diasRestantes =  totalDias - cantidadSolicitada;
+                    return mensaje = `si confirma le van a quedar ${diasRestantes} dias`;
+                    }
+                    alert(resta());
+                    
+                    
+          } else {alert("ingresaste una cantidad que no es valida, adios");
+                    
+          }
+          
+}
+//calculador();
 
 // BUSQUEDA DE JERARQUIA, CON SOME PARA QUE ME DIGA SI EXISTE Y POR METODO FILTER PARA QUE ME DEVUELVA LA CANTIDAD
 /*
@@ -269,21 +272,6 @@ let tituloNuevo = document.querySelector(".headerIndex").textContent = "INGRESAS
 console.log(tituloNuevo);
 
 
-///////////////////////////////////////////////////
-
-/*let listaImpresa = document.querySelector(".listaIndex");
-
-for (let p of personas){
-   let listado = document.createElement("li");
-   listado.innerHTML=`${p.funcion}`;
-   listaImpresa.appendChild(listado);
-}
-
-
-console.log(listaImpresa);*/
-
-
-
 const inputSearch = document.querySelector("#inputSearch")
 const tbody = document.querySelector("tbody")
 
@@ -294,16 +282,21 @@ const listadoBusqueda = (p)=>{
             <td>${p.nombre}</td>
             <td>${p.apellido}</td>
             <td>${p.funcion}</td>
+            <td>
+            <button class="botonSeleccionar" >SELECCIONAR</button>
+            </td>
          </tr>`
 }
 
 const filtradoJerarquia = ()=>{
-   let parametro1 = inputSearch.value
+   let parametro1 = inputSearch.value.trim().toUpperCase()
    let resultado6 = personas.filter(p=> p.jerarquia.includes(parametro1))
    if (resultado6.length > 0) {
  cargarBusqueda(resultado6)
  }
 }
+inputSearch.addEventListener("search", filtradoJerarquia)
+
 
 const cargarBusqueda = (array)=>{
    let listado = ""
@@ -314,7 +307,8 @@ const cargarBusqueda = (array)=>{
       tbody.innerHTML = listado;
    }
 }
-cargarBusqueda(personas)
+
+
 
 
      
@@ -354,3 +348,13 @@ botonConcepto.addEventListener("click", ()=>{
 botonConcepto.addEventListener("mousemove", ()=>{
    botonConcepto.title = "presiona para ingresar a Concepto"
 } )
+
+//BOTON SELECCIONAR
+
+let botonSeleccionar = document.querySelector(".botonSeleccionar");
+
+
+botonSeleccionar.addEventListener("mousemove", ()=>{
+botonSeleccionar.title = "presiona para seleccionar"
+})
+
