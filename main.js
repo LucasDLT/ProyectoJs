@@ -306,6 +306,12 @@ const cargarBusqueda = (array)=>{
          listado += listadoBusqueda(p)
       })
       tbody.innerHTML = listado;
+
+      const boton = document.querySelectorAll(`.botonSeleccionar`);
+      
+      boton.addEventListener("mousemove", ()=>{
+         botonSeleccionar.title = "presiona para seleccionar"
+         })
    }
 }
 
@@ -351,14 +357,11 @@ botonConcepto.addEventListener("mousemove", ()=>{
 } )
 
 //BOTON SELECCIONAR
-
-let botonSeleccionar =document.getElementsByClassName(`.botonSeleccionar`);
+/*let botonSeleccionar =document.getElementsByClassName(`.botonSeleccionar`);
 
 for (let index = 0; index < botonSeleccionar.length; index++) {
    
       botonSeleccionar[index].addEventListener("mousemove", ()=>{
       botonSeleccionar.title = "presiona para seleccionar"
       })
-   
-}
-
+}*/
