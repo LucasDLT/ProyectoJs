@@ -277,13 +277,14 @@ const tbody = document.querySelector("tbody")
 
 
 const listadoBusqueda = (p)=>{
+
    return`<tr>
             <td>${p.jerarquia}</td>
             <td>${p.nombre}</td>
             <td>${p.apellido}</td>
             <td>${p.funcion}</td>
-            <td>
-            <button class="botonSeleccionar" >SELECCIONAR</button>
+            <td  >
+            <button class= "botonSeleccionar">SELECCIONAR</button>
             </td>
          </tr>`
 }
@@ -351,10 +352,13 @@ botonConcepto.addEventListener("mousemove", ()=>{
 
 //BOTON SELECCIONAR
 
-let botonSeleccionar = document.querySelector(".botonSeleccionar");
+let botonSeleccionar =document.getElementsByClassName(`.botonSeleccionar`);
 
-
-botonSeleccionar.addEventListener("mousemove", ()=>{
-botonSeleccionar.title = "presiona para seleccionar"
-})
+for (let index = 0; index < botonSeleccionar.length; index++) {
+   
+      botonSeleccionar[index].addEventListener("mousemove", ()=>{
+      botonSeleccionar.title = "presiona para seleccionar"
+      })
+   
+}
 
