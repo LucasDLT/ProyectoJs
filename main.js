@@ -5,7 +5,7 @@ let personas = [];//array de personas vacio
 
 
 
-function ingreso () {
+/*function ingreso () {
 
          let usuario = prompt("ingresa tu usuario");
          let contrasenia = Number(prompt("ingresa tu clave"));
@@ -32,7 +32,7 @@ function ingreso () {
             }
          
 }
-//ingreso();
+//ingreso();*/
 
 
 
@@ -146,7 +146,7 @@ personas.push(perez,gomez, torre, monte, rojo, toro, hernandez, gonzalez, ale, m
 
 
 
-
+/*
 function calculador () {
 
 
@@ -264,7 +264,7 @@ if (resultado2 != true) {
 
 ///////////////////////////    DOM    ////////////////////////////
 
- 
+
 
 
 //MODIFIQUE EL TITULO ORIGINAL
@@ -274,6 +274,8 @@ console.log(tituloNuevo);
 
 const inputSearch = document.querySelector("#inputSearch")
 const tbody = document.querySelector("tbody")
+const inputSearchJerarquia = document.querySelector(".inputSearchJerarquia")
+const mainLicencias = document.querySelector(".mainLicencias")
 
 
 const listadoBusqueda = (p)=>{
@@ -286,8 +288,9 @@ const listadoBusqueda = (p)=>{
             <td  >
             <button class= "botonSeleccionar">SELECCIONAR</button>
             </td>
-         </tr>`
+            </tr>`
 }
+         
 
 const filtradoJerarquia = ()=>{
    let parametro1 = inputSearch.value.trim().toUpperCase()
@@ -307,20 +310,22 @@ const cargarBusqueda = (array)=>{
       })
       tbody.innerHTML = listado;
 
-      const boton = document.querySelectorAll(`.botonSeleccionar`);
+      const botonSeleccionar = document.querySelectorAll(`.botonSeleccionar`);
       
-      boton.addEventListener("mousemove", ()=>{
-         botonSeleccionar.title = "presiona para seleccionar"
+      botonSeleccionar.forEach(boton =>{
+         boton.addEventListener("mousemove", ()=>{
+         boton.title = "presiona para seleccionar"
          })
-   }
+      }) 
+      
+      botonSeleccionar.forEach(boton=>{
+         boton.addEventListener("click", ()=>{
+               guardarStorage("persona", JSON.stringify(p.apellido))
+         
+         })
+      })
+   }   
 }
-
-
-
-
-     
-
-
 /**********************BOTONES***********************/
 
 //BOTON LICENCIAS
@@ -330,15 +335,19 @@ botonLicencia.textContent= "LICENCIAS";
 botonLicencia.setAttribute("class", "botonLicencia");
 document.querySelector(".listaIndex").appendChild(botonLicencia);
 
+
 //onclick
 botonLicencia.onclick = function(){
    //console.log("hiciste click en el boton de licencias");
    location.href = `pages/licencias.html`
+   localStorage.setItem("location", JSON.stringify(`pages/licencias.html`) )
 }
 //mousemove con msj para el boton
 botonLicencia.addEventListener("mousemove", ()=>{
    botonLicencia.title = "presiona para ingresar a Licencias"
 } )
+
+
 
 //BOTON CONCEPTOS
 
@@ -356,12 +365,3 @@ botonConcepto.addEventListener("mousemove", ()=>{
    botonConcepto.title = "presiona para ingresar a Concepto"
 } )
 
-//BOTON SELECCIONAR
-/*let botonSeleccionar =document.getElementsByClassName(`.botonSeleccionar`);
-
-for (let index = 0; index < botonSeleccionar.length; index++) {
-   
-      botonSeleccionar[index].addEventListener("mousemove", ()=>{
-      botonSeleccionar.title = "presiona para seleccionar"
-      })
-}*/
