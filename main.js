@@ -314,15 +314,12 @@ const cargarBusqueda = (array)=>{
       
       botonSeleccionar.forEach(boton =>{
          boton.addEventListener("mousemove", ()=>{
-         boton.title = "presiona para seleccionar"
+         boton.title = "presiona para seleccionar"        
          })
-      }) 
-      
-      botonSeleccionar.forEach(boton=>{
          boton.addEventListener("click", ()=>{
-               guardarStorage("persona", JSON.stringify(p.apellido))
-         
-         })
+         localStorage.setItem("personas", JSON.stringify( ))
+         location.href = `pages/perfil.html`   
+      }) 
       })
    }   
 }
