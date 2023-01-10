@@ -310,9 +310,39 @@ const cargarBusqueda = (array) => {
          legajo:p.legajo
       }
       localStorage.setItem("seleccion", JSON.stringify(seleccion))
-     location.href = `perfil.html`
-      
+      //location.href = `perfil.html`
+      fichaPersonal(seleccion);
       })
    })
 }
 
+const fichaPersonal = () =>{
+          tbody.innerHTML = ""
+       
+          const main = document.createElement(`main`);
+          const contenidoMain = `
+
+          <header>
+          <h1>LICENCIAS</h1>
+         </header> 
+        
+        <div>
+          <h2> personal</h2>
+          
+          <form method="post" action="" enctype="text/plain"> 
+          <h4>Nombre: " "</h4>
+          
+          <h4>Apellido: "$" </h4>
+       
+          <h4>Jerarquia: "$" </h4>
+          
+          <h4>Funcion: "$" </h4>
+                    
+          <h4>domicilio: "$" </h4>
+       
+          </form>
+          `
+          main.innerHTML = contenidoMain;
+          tbody.append(main)
+
+} 
