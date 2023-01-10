@@ -311,7 +311,7 @@ const cargarBusqueda = (array) => {
       }
       localStorage.setItem("seleccion", JSON.stringify(seleccion))
       //location.href = `perfil.html`
-      fichaPersonal(seleccion);
+      fichaPersonal();
       })
    })
 }
@@ -330,7 +330,7 @@ const fichaPersonal = () =>{
           <h2> personal</h2>
           
           <form method="post" action="" enctype="text/plain"> 
-          <h4>Nombre: " "</h4>
+          <h4>Nombre: "${p.nombre} "</h4>
           
           <h4>Apellido: "$" </h4>
        
